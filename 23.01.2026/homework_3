@@ -1,0 +1,44 @@
+from math import dist
+
+claster_A=[[],[],[],[]]
+A=[list(map(float, i.replace("\n","").split())) for i in open("03_27_A.txt")]
+
+for i in A:
+    if i[1]>15:
+        claster_A[0].append(i)
+    elif i[0]<10:
+        claster_A[1].append(i)
+    elif i[0]>15:
+        claster_A[2].append(i)
+    else:
+        claster_A[3].append(i)
+
+claster_B=[[],[],[],[],[]]
+B=[list(map(float, i.replace("\n","").split())) for i in open("03_27_B.txt")]
+
+for i in B:
+    if i[0]>29:
+        claster_B[0].append(i)
+    elif i[0]>23 and i[1]<5:
+        claster_B[1].append(i)
+    elif  5<i[1]<9:
+        claster_B[2].append(i)
+    elif i[1]>9:
+        claster_B[3].append(i)
+    else:
+        claster_B[4].append(i)
+
+def centor(n):
+    mini=10**10
+    mini_data=0
+    for i in n:
+        data=sum(dist(i, p) for p in n)
+        if data<mini:
+            mini=data
+            mini_data=i
+    return mini_data
+
+
+print(int(sum([centor(i)[0] for i in claster_A])/4*10000), int(sum([centor(i)[1] for i in claster_A])/4*10000))
+print()
+print(int(sum([centor(i)[0] for i in claster_B])/5*10000),int(sum([centor(i)[1] for i in claster_B])/5*10000))
