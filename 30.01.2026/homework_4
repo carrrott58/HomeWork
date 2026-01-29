@@ -1,0 +1,26 @@
+from math import dist
+
+claster_A=[[],[]]
+
+with open("04_27a.txt") as file:
+    for i in file:
+        x,y=map(float, i.split())
+        if (x>5 and y<6) or (x>2 and 3.5<y<6):
+            claster_A[0].append([x,y])
+        elif x<4.2 and y>0:
+            claster_A[1].append([x, y])
+
+
+def centroid(n):
+    maxi=10**10
+    maxi_data=-1
+    for i in n:
+        data=sum([dist(i, p) for p in n])
+        if data<maxi:
+            maxi=data
+            maxi_data=i
+    return maxi_data
+
+
+print(int(sum([centroid(i)[0] for i in claster_A])/2*10000), int(sum([centroid(i)[1] for i in claster_A])/2*10000))
+# print(int(sum([centroid(i)[0] for i in claster_B])/3*10000), int(sum([centroid(i)[1] for i in claster_B])/3*10000))
