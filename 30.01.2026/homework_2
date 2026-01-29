@@ -1,0 +1,47 @@
+from math import dist
+
+claster_A=[[],[]]
+
+with open("02_27-51a.txt") as file:
+    for i in file:
+        x,y=map(float, i.split())
+        if x<5:
+            claster_A[0].append([x, y])
+        elif x>6.8:
+            claster_A[1].append([x,y])
+
+
+claster_B=[[],[],[]]
+with open("02_27-51b.txt") as file:
+    for i in file:
+        x,y=map(float, i.split())
+        if x<2.7:
+            dd=0
+        elif y>7 and x>14:
+            dd=0
+        elif y>7.5 and y<9 and x>5.5 and x<7.5:
+            dd=0
+        elif y>8:
+            claster_B[0].append([x,y])
+        elif x>9.5:
+            claster_B[1].append([x,y])
+        else:
+            claster_B[2].append([x,y])
+print(len(claster_B[0])+ len(claster_B[1])+ len(claster_B[2]))
+
+
+
+
+def centroid(n):
+    maxi=10**10
+    maxi_data=-1
+    for i in n:
+        data=sum([dist(i, p) for p in n])
+        if data<maxi:
+            maxi=data
+            maxi_data=i
+    return maxi_data
+
+
+print(int(sum([centroid(i)[0] for i in claster_A])/2*100000), int(sum([centroid(i)[1] for i in claster_A])/2*100000))
+print(int(sum([centroid(i)[0] for i in claster_B])/3*100000), int(sum([centroid(i)[1] for i in claster_B])/3*100000))
