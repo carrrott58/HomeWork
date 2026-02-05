@@ -1,0 +1,18 @@
+from itertools import permutations
+
+t="124 2146 356 41267 536 623457 746"
+g="АБВ БАВ ВАБДЕГ ГВЕК ДВЕ ЕДВГК КЕГ"
+
+g={x[0]: set(x[1:]) for x in g.split()}
+
+print(*"1234567")
+
+for p in permutations("АБВГДЕК"):
+    new_g=t
+    for x,y in zip("1234567", p):
+        new_g=new_g.replace(x,y)
+    new_g={x[0]: set(x[1:]) for x in new_g.split()}
+    if g==new_g:
+        print(*p)
+
+#75
