@@ -1,0 +1,18 @@
+from itertools import permutations
+
+t = "1234567 217 3157 4156 5134 614 7123"
+g = "ACG BDC CABDEFG DECB EFCD FECG GFCA"
+
+g = {x[0]: set(x[1:]) for x in g.split()}
+
+print ("1 2 3 4 5 6 7")
+
+for p in permutations("ABCDEFG"):
+    new_g = t
+    for x, y in zip("1234567", p):
+        new_g=new_g.replace(x,y)
+    new_g = {x[0]: set(x[1:]) for x in new_g.split()}
+    if new_g==g:
+        print(*p)
+
+#ответ: 35
