@@ -1,0 +1,30 @@
+from re import *
+
+with open("k7a-1.txt") as file:
+    for x in file:
+        f1=x
+        f2=x
+        f3=x
+
+#способ 1
+
+print(max([len(i) for i in f1.replace("D", " ").replace("E", " ").split()]))
+
+#способ 2
+
+f2=f2.replace("D", "*").replace("E", "*")
+m=0
+for x in range (len(f2)):
+    for y in range (x+m, len(f2)):
+        c=f2[x:y+1]
+        if all(i!="*" for i in c):
+            m=max(m,len(c))
+        else:
+            break
+print(m)
+
+#способ 3
+
+r=r"[ABC]+"
+m = max([x.group() for x in finditer(r, f3)], key=len)
+print(len(m))
