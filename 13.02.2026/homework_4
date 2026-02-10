@@ -1,0 +1,28 @@
+with open("RmJqoDK9H.txt") as file:
+    for x in file:
+        f1=x
+        f2=x
+        f3=x
+
+#способ 1
+
+while "XX" in f1 or "YY" in f1 or "ZZ" in f1:
+    f1=f1.replace("XX", "X X").replace("YY", "Y Y").replace("ZZ", "Z Z")
+
+print(max([len(i) for i in f1.split()]))
+
+#способ 2
+
+m=0
+
+for x in range(len(f2)):
+    for y in range(x+m, len(f2)):
+        c=f2[x:y+1]
+        if all(c[i]!=c[i-1] for i in range (1, len(c))):
+            m=max(m, len(c))
+        else:
+            break
+
+print(m)
+
+
