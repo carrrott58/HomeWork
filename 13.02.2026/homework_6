@@ -1,0 +1,32 @@
+from re import *
+
+with open("4scJBAUuh.txt") as file:
+    for x in file:
+        f1=x
+        f2=x
+        f3=x
+
+#способ 1
+
+while "ad" in f1 or "da" in f1:
+    f1=f1.replace("ad", "a d").replace("da", "d a")
+print(max([len(i) for i in f1.split()]))
+
+#способ 2
+
+m=0
+for x in range (len(f2)):
+    for y in range (x+m, len(f2)):
+        c=f2[x:y+1]
+        if "da" not in c and "ad" not in c:
+            m=max(m, len(c))
+        else:
+            break
+print(m)
+
+#способ 3
+f3=f3.replace("da","d&a").replace("ad", "a&d")
+reg=r"[^&]*"
+reg = fr'(?=({reg}))'
+m = max([x.group(1) for x in finditer(reg, f3)], key=len)
+print(len(m))
