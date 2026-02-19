@@ -1,0 +1,25 @@
+from re import *
+
+with open("CLna42cqv.txt") as file:
+    x=file.readline()
+    f1=x
+    f2=x
+
+#способ 1
+d="0123456789AB"
+m=0
+for x in range(len(f1)):
+    for y in range(x+m, len(f1)):
+        c=f1[x:y+1]
+        if all(i in d for i in c) and c[0]!="0" and c[-1] in "02468A":
+            m=max(m, len(c))
+        else:
+            break
+print(m)
+
+#способ 2
+reg=r"([1-9AB][0-9AB]*[02468A])"
+reg=fr"(?=({reg}))"
+
+m=max((x.group(1) for x in finditer(reg, f1)), key=len)
+print(len(m))
