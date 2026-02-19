@@ -1,0 +1,17 @@
+from re import *
+with open("PftWBzpUM.txt") as file:
+    x=file.readline()
+    f1=x
+    f2=x
+
+#способ 1
+f1=f1.replace("Q", "*").replace("R", "*").replace("S", "*")
+m=0
+for x in range(len(f1)):
+    for y in range(x+m, len(f1)):
+        c=f1[x:y+1]
+        if all(c[i:i+2]!="**" for i in range(len(c)-1)):
+            m=max(m, len(c))
+        else:
+            break
+print(m)
