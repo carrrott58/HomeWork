@@ -1,0 +1,24 @@
+from re import *
+with open("nkbV0RABS.txt") as file:
+    x=file.readline()
+    f1=x
+    f2=x
+
+#способ 1
+f1=f1.replace("A", "+").replace("O","+").replace("B","-").replace("C","-").replace("D","-")
+m=0
+for x in range(len(f1)):
+    for y in range(x+m, len(f1)):
+        c=f1[x:y+1]
+        if len(c)%2==0:
+            if all(c[i:i+2]=="-+" for i in range(0, len(c), 2)):
+                m=max(m, len(c))
+            else:
+                break
+print(m//2)
+
+#способ 2
+reg=r"(BA|CA|DA|BO|CO|DO)+"
+reg=fr"(?=({reg}))"
+m= max((x.group(1) for x in finditer(reg, f2)), key=len)
+print(len(m)//2)
