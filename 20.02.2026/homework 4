@@ -1,0 +1,23 @@
+from re import *
+with open("wkXkxyVGO.txt") as file:
+    x=file.readline()
+    f1=x
+    f2=x
+
+#способ 1
+f1=f1.replace("B", "*").replace("C", "*")
+m=0
+for x in range(len(f1)):
+    for y in range(x+m, len(f1)):
+        c=f1[x:y+1]
+        if len(c)%3==0:
+            if all(c[i:i+3] == "**A" for i in range(0,len(c), 3)):
+                m=max(m, len(c))
+            else:
+                break
+
+#способ 2
+reg=r"(BBA|BCA|CBA|CCA)+"
+reg=fr"(?=({reg}))"
+m=max((x.group(1) for x in finditer(reg, f2)), key=len)
+print(len(m))
