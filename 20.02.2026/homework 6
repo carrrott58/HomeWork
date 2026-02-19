@@ -1,0 +1,18 @@
+from re import *
+
+with open("Ph7cB8EWL.txt") as file:
+    x=file.readline()
+    f1=x
+
+#способ 1
+f1=f1.replace("A", "*").replace("B", "*").replace("C", "*").replace("6", "&").replace("7", "&").replace("8", "&").replace("9", "&")
+
+m=0
+for x in range(len(f1)):
+    for y in range (m+x, len(f1)):
+        c=f1[x:y+1]
+        if all(c[i]!=c[i-1] for i in range(1, len(c))):
+            m=max(m,len(c))
+        else:
+            break
+print(m)
