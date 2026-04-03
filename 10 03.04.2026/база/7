@@ -1,0 +1,11 @@
+from math import ceil
+
+def f(s1,s2,m):
+    if s1+s2<=108: return m%2==0
+    if m==0: return 0
+    h = (f(s1-2, s2, m-1), f(s1,s2-2,m-1), f(ceil(s1/2), s2,m-1), f(s1, ceil(s2/2), m-1))
+    return any(h) if (m-1)%2==0 else all(h)
+
+print(*(s for s in range (200, 48, -1) if f(s, 60, 2))) #192
+print(*(s for s in range (200, 48, -1) if not f(s, 60, 1) and f(s, 60, 3))) #196 99
+print(*(s for s in range (200, 48, -1) if not f(s, 60, 2) and f(s, 60, 4))) #160
