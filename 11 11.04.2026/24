@@ -1,0 +1,13 @@
+with open("24.txt") as file:
+    f1=file.read()
+a="QWERTYUIOPASDFGHJKLZXCVBNM"
+b="1234567890"
+m=25
+for i in b:
+    f1=f1.replace(i, "*")
+for i in f1.split("*"):
+    if len(i)>m:
+        if all(i.count(j)>0 for j in a):
+            m=max(m, len(i))
+
+print(m)
